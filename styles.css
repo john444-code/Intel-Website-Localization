@@ -82,3 +82,19 @@ body{
 
 /* Footer safe spacing */
 main{ padding-bottom:3rem; }
+
+/* RTL support: adapt text alignment and direction-sensitive spacing */
+html[dir="rtl"]{
+  direction: rtl;
+}
+html[dir="rtl"] .hero-inner{ direction: rtl; }
+html[dir="rtl"] .hero-text{ text-align: right; }
+html[dir="rtl"] .timeline-track{ direction: rtl; }
+html[dir="rtl"] .milestone{ text-align: right; }
+
+/* Subscription form visual tweaks */
+.card{ border: none; }
+.btn-primary{ background-color: var(--intel-blue); border-color: var(--intel-blue); }
+.btn-primary:focus{ box-shadow: 0 0 0 0.25rem rgba(0,113,197,0.18); }
+
+/* Utility: visually-hidden already used (Bootstrap) */
