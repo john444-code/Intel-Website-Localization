@@ -4,17 +4,28 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Intel: Sustainability Through the Ages</title>
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUa6Y5Y5h2k6b0v6Q6rYz2e1q8xT2q3H5s6Q7w8X9y0z" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
   <!-- Header / Hero Section -->
-  <header class="hero">
-    <div class="hero-inner">
-      <img class="logo" src="img/intel-header-logo.svg" alt="Intel Logo" />
-      <div class="hero-text">
-        <h1>Building a More Sustainable Future</h1>
-        <p class="sub">Explore Intel’s sustainability milestones and our path to net-zero by 2040.</p>
+  <header class="hero" role="banner">
+    <div class="container hero-inner d-flex align-items-center justify-content-between">
+      <div class="d-flex align-items-center">
+        <img class="logo" src="img/intel-header-logo.svg" alt="Intel Logo" />
+        <div class="hero-text ms-3">
+          <h1>Building a More Sustainable Future</h1>
+          <p class="sub">Explore Intel’s sustainability milestones and our path to net-zero by 2040.</p>
+        </div>
+      </div>
+
+      <div class="d-flex align-items-center gap-2">
+        <label for="lang-select" class="visually-hidden">Select language</label>
+        <select id="lang-select" class="form-select form-select-sm" aria-label="Select language for page" title="Change language and direction">
+          <option value="en" selected>English</option>
+          <option value="ar">العربية (Arabic)</option>
+        </select>
       </div>
     </div>
   </header>
@@ -144,7 +155,146 @@
       </div>
     </section>
 
+    <!-- Features / Localization & Accessibility Highlights -->
+    <section class="container my-4" aria-label="Features">
+      <div class="row text-center g-4">
+        <div class="col-12 col-md-4">
+          <div class="p-3">
+            <!-- globe icon -->
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 2a10 10 0 100 20 10 10 0 000-20z" stroke="#0071C5" stroke-width="1.5" fill="none"></path>
+              <path d="M2 12h20M12 2c3 3 3 8 3 10s0 7-3 10M12 2c-3 3-3 8-3 10s0 7 3 10" stroke="#064a8a" stroke-width="1" fill="none" opacity="0.6"></path>
+            </svg>
+            <h4 class="mt-2">Global Ready</h4>
+            <p class="text-muted">Supports RTL languages and localized content flows.</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="p-3">
+            <!-- leaf icon -->
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M3 21s7-9 12-9 6 5 6 5" stroke="#0071C5" stroke-width="1.5" fill="none"></path>
+              <path d="M8 7c3 0 5 4 5 4" stroke="#064a8a" stroke-width="1" fill="none" opacity="0.6"></path>
+            </svg>
+            <h4 class="mt-2">Sustainable</h4>
+            <p class="text-muted">Milestones and commitments for a low-carbon future.</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="p-3">
+            <!-- accessibility icon -->
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 2v6" stroke="#0071C5" stroke-width="1.5" fill="none"></path>
+              <circle cx="12" cy="16" r="4" stroke="#064a8a" stroke-width="1" fill="none" opacity="0.6"></circle>
+            </svg>
+            <h4 class="mt-2">Accessible</h4>
+            <p class="text-muted">Built with ARIA, keyboard focus, and readable contrast.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Subscription Form -->
+    <section class="container" aria-label="Subscribe to sustainability newsletter">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-8">
+          <div class="card p-3 mb-4" role="region" aria-labelledby="subscribe-heading">
+            <h2 id="subscribe-heading" class="h5 mb-2">Subscribe to our sustainability newsletter</h2>
+            <p class="text-muted mb-3">Get updates on our progress toward net-zero and sustainable manufacturing.</p>
+
+            <form id="subscribe-form" novalidate>
+              <div class="row g-2 align-items-center">
+                <div class="col-12 col-sm-8">
+                  <label for="email" class="form-label">Email address</label>
+                  <input type="email" id="email" class="form-control" placeholder="you@example.com" required aria-required="true" aria-describedby="email-help email-error">
+                  <div id="email-help" class="form-text">We'll never share your email.</div>
+                  <div id="email-error" class="invalid-feedback" aria-live="polite"></div>
+                </div>
+                <div class="col-12 col-sm-4 d-grid">
+                  <button type="submit" class="btn btn-primary" id="subscribe-btn">Subscribe</button>
+                </div>
+              </div>
+            </form>
+
+            <div id="subscribe-status" class="mt-3" aria-live="polite"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <p class="timeline-hint">Scroll horizontally on wide screens — tap or hover a card to reveal more.</p>
   </main>
+  
+  <script>
+    // Language toggle: switches page language and direction (LTR/RTL)
+    (function () {
+      const select = document.getElementById('lang-select');
+      const saved = localStorage.getItem('site-lang');
+      function applyLang(lang) {
+        if (!lang) return;
+        if (lang === 'ar') {
+          document.documentElement.lang = 'ar';
+          document.documentElement.dir = 'rtl';
+        } else {
+          document.documentElement.lang = 'en';
+          document.documentElement.dir = 'ltr';
+        }
+      }
+      if (saved) {
+        select.value = saved;
+        applyLang(saved);
+      }
+      select.addEventListener('change', (e) => {
+        const v = e.target.value;
+        localStorage.setItem('site-lang', v);
+        applyLang(v);
+      });
+    })();
+
+    // Accessible subscription form handling
+    (function () {
+      const form = document.getElementById('subscribe-form');
+      const email = document.getElementById('email');
+      const error = document.getElementById('email-error');
+      const status = document.getElementById('subscribe-status');
+
+      function showError(msg) {
+        error.textContent = msg;
+        email.classList.add('is-invalid');
+      }
+      function clearError() {
+        error.textContent = '';
+        email.classList.remove('is-invalid');
+      }
+
+      form.addEventListener('submit', function (ev) {
+        ev.preventDefault();
+        clearError();
+        status.textContent = '';
+        if (!email.value) {
+          showError('Please enter your email address.');
+          email.focus();
+          return;
+        }
+        if (!email.checkValidity()) {
+          showError('Please enter a valid email address.');
+          email.focus();
+          return;
+        }
+
+        // Simulate subscription success (replace with API call)
+        const userEmail = email.value.trim();
+        email.value = '';
+        status.textContent = 'Thanks — you are subscribed!';
+        status.className = 'text-success';
+        // move focus to status for screen readers
+        status.setAttribute('tabindex', '-1');
+        status.focus();
+        setTimeout(() => status.removeAttribute('tabindex'), 1000);
+      });
+    })();
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-abc" crossorigin="anonymous"></script>
 </body>
 </html>
